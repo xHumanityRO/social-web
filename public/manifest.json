@@ -1,21 +1,11 @@
 {
-  "short_name": "React App",
+  "short_name": "XHumanity Forum",
   "name": "Create React App Sample",
   "icons": [
     {
       "src": "logoXhumanity.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "logoXHumanity-black",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logoXHumanity-black",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
