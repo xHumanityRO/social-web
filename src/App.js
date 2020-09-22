@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './logoXHumanity-black.jpeg';
 import './App.css';
 import StartPage from './components/startPage';
 
