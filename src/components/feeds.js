@@ -40,7 +40,6 @@ class Feeds extends React.Component {
             <Row>
                 <h1>
                     User: {currentUserFeeds.firstName} {currentUserFeeds.lastName}
-                    <br/><br/>
                 </h1>
             </Row>
             <Row>

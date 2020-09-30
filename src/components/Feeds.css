@@ -1,7 +1,8 @@
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .FeedsContainer{
-    padding: 20px 20px 20px 40px
+    padding: 20px 0px 0px 40px;
+    color: white
 }
 
 .my-notify-info, .my-notify-success, .my-notify-warning, .my-notify-error {
