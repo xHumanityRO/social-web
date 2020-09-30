@@ -10,7 +10,7 @@ class Feed extends React.Component {
             postErrorMessage: ""
         }
     }
-    
+
     onSelectPost = (feedId) =>{
         const {postErrorMessage, postSuccessMessage} = this.state;
 
@@ -28,31 +28,31 @@ class Feed extends React.Component {
             // .catch( (err) => {
                 //     postErrorMessage="An error has ocured"
                 // })
-                
+
             }
     render  ()  {
         const { feedItem } = this.props;
         const {postErrorMessage, postSuccessMessage} = this.state;
 
         return (<div key={feedItem.id}>
-            <Col>
+            <Col xs={12} md={4}>
                 <Card style={{ width: '18rem' }} >
-                    {feedItem.picture 
-                        && (<Card.Img variant="top" 
-                                src={feedItem.picture} 
+                    {feedItem.picture
+                        && (<Card.Img variant="top"
+                                src={feedItem.picture}
                                 alt="missing image post" />)}
                     <Card.Body>
-                        {feedItem.message 
+                        {feedItem.message
                             && (<Card.Text>
                                     {`${feedItem.message.substring(0,50)}${feedItem.message.length > 49 ? '...': ''}`}
                                 </Card.Text>)}
                         <Button variant="primary" onClick={() => this.onSelectPost(feedItem.id)}>Submit selected post</Button>
                     </Card.Body>
-                    {postErrorMessage && (<div className="my-notify-error">{postErrorMessage}</div>)}   
-                    {postSuccessMessage && (<div className="my-notify-success">{postSuccessMessage}</div>)}   
+                    {postErrorMessage && (<div className="my-notify-error">{postErrorMessage}</div>)}
+                    {postSuccessMessage && (<div className="my-notify-success">{postSuccessMessage}</div>)}
                 </Card>
             </Col>
         </div>)
     }
-}    
+}
 export default Feed;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row} from "react-bootstrap";
+import { Container, Row, Col} from "react-bootstrap";
 import Axios from 'axios';
 import feedsxH00033 from '../mocks/feedsxH00033';
 import Feed from './feed';
@@ -36,21 +36,25 @@ class Feeds extends React.Component {
 
     render(){
         const {currentUserFeeds, error} = this.state;
-        return (<Container fluid className="FeedsContainer">
+        return (<Container className="FeedsContainer">
             <Row>
-                <h1>
-                    User: {currentUserFeeds.firstName} {currentUserFeeds.lastName}
-                </h1>
+                <Col className="left">
+                    <h1>
+                        <span className="yellow">User:</span> {currentUserFeeds.firstName} {currentUserFeeds.lastName}
+                    </h1>
+                </Col>
             </Row>
             <Row>
-                Posts:  
+                <Col className="left">
+                    <h3>Posts:</h3>
+                </Col>
             </Row>
             <Row>{ error && (<div class="my-notify-error">{error}</div>)}</Row>
             <Row>
                 {!error && currentUserFeeds?.posts?.map((feedItem) => (
                     feedItem.message && feedItem.picture &&
-                    <Feed key={feedItem.id} 
-                        feedItem={feedItem} 
+                    <Feed key={feedItem.id}
+                        feedItem={feedItem}
                     />))}
             </Row>
         </Container>)
