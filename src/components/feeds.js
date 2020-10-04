@@ -6,19 +6,16 @@ import Feed from './feed';
 import './Feeds.css';
 
 class Feeds extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            currentUserFeeds: feedsxH00033,
-            selectedPostId:"",
-            error:""
-        }
+    state = {
+        currentUserFeeds: feedsxH00033,
+        selectedPostId:"",
+        error:"",
+        userId: window.location.pathname.split('/').pop()
     }
 
-    getFeeds = () => {
-        const path = window.location.pathname;
-        const userId = path.split('/').pop(); //xH00012
-        const feedURL = 'https://forum.xhumanity.org/social/feed/';
+    getFeeds = () =>{
+        const { userId } = this.state;
+        const feedURL = 'https://webapp.xhumanity.org/social/feed/';
         Axios.get(`${feedURL}${userId}`)
         .then((response) => {
             this.setState({
@@ -31,11 +28,11 @@ class Feeds extends React.Component {
     }
 
     componentDidMount(){
-        // this.getFeeds();
+        this.getFeeds();
     }
 
     render(){
-        const {currentUserFeeds, error} = this.state;
+        const {currentUserFeeds, error, userId} = this.state;
         return (<Container className="FeedsContainer">
             <Row>
                 <Col className="left">
@@ -54,7 +51,7 @@ class Feeds extends React.Component {
                 {!error && currentUserFeeds?.posts?.map((feedItem) => (
                     feedItem.message && feedItem.picture &&
                     <Feed key={feedItem.id}
-                        feedItem={feedItem}
+                        feedItem={feedItem} userId={userId}
                     />))}
             </Row>
         </Container>)

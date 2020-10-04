@@ -3,33 +3,26 @@ import { Col, Card, Button } from "react-bootstrap";
 import Axios from 'axios';
 
 class Feed extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            postSuccessMessage: "",
-            postErrorMessage: ""
-        }
+    state = {
+        postSuccessMessage: "",
+        postErrorMessage: ""
     }
 
-    onSelectPost = (feedId) =>{
-        const {postErrorMessage, postSuccessMessage} = this.state;
-
-        console.log('on select post feedID: ', feedId);
-        if ( feedId === '3418160981537358_2254591484560986'){
-            this.setState({postErrorMessage : "An error has ocured"});
-        }else{
+    onSelectPost = (feedItem) =>{
+        const feedSubmitURL = 'https://webapp.xhumanity.org/social/feed';
+        const { userId } = this.props;
+        Axios.post(feedSubmitURL,{
+            "userId": userId,
+            "videoUrl": feedItem.picture
+        })
+        .then((response) => {
             this.setState({postSuccessMessage : "sent with success"});
-        }
-        // const feedSubmitURL = 'https://forum.xhumanity.org/social/feed/';
-        // Axios.post(feedSubmitURL,{postId:feedId})
-        //     .then((response) => {
-            // this.setState({postSuccessMessage : "sent with success"});
-            // })
-            // .catch( (err) => {
-                //     postErrorMessage="An error has ocured"
-                // })
+        })
+        .catch( (err) => {
+            this.setState({postErrorMessage : "An error has ocured"});
+        })
+    }
 
-            }
     render  ()  {
         const { feedItem } = this.props;
         const {postErrorMessage, postSuccessMessage} = this.state;
@@ -46,7 +39,7 @@ class Feed extends React.Component {
                             && (<Card.Text>
                                     {`${feedItem.message.substring(0,50)}${feedItem.message.length > 49 ? '...': ''}`}
                                 </Card.Text>)}
-                        <Button variant="primary" onClick={() => this.onSelectPost(feedItem.id)}>Submit selected post</Button>
+                        <Button variant="primary" onClick={() => this.onSelectPost(feedItem)}>Submit selected post</Button>
                     </Card.Body>
                     {postErrorMessage && (<div className="my-notify-error">{postErrorMessage}</div>)}
                     {postSuccessMessage && (<div className="my-notify-success">{postSuccessMessage}</div>)}
