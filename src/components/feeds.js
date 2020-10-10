@@ -10,11 +10,12 @@ class Feeds extends React.Component {
         currentUserFeeds: feedsxH00033,
         selectedPostId:"",
         error:"",
-        userId: window.location.pathname.split('/').pop()
+        userId: (new URL(window.location).searchParams).get('user'),
     }
 
     getFeeds = () =>{
         const { userId } = this.state;
+        console.log('@debug userID', userId);
         const feedURL = 'https://webapp.xhumanity.org/social/feed/';
         Axios.get(`${feedURL}${userId}`)
         .then((response) => {
