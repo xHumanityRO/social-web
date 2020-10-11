@@ -19,7 +19,7 @@ class Feed extends React.Component {
             this.setState({postSuccessMessage : "sent with success"});
         })
         .catch( (err) => {
-            this.setState({postErrorMessage : "An error has ocured"});
+            this.setState({postErrorMessage : "An error has occurred"});
         })
     }
 

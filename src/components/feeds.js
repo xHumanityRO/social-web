@@ -24,7 +24,7 @@ class Feeds extends React.Component {
             })
         })
         .catch( (err) => {
-            this.setState({error:"An error has ocured"})
+            this.setState({error:"An error has occurred"})
         })
     }
 
